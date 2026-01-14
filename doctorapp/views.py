@@ -111,7 +111,6 @@ def appointment_detail(request, appointment_id):
         appointment.status = request.POST.get('status')
         appointment.save()
 
-        messages.success(request, "Appointment updated successfully")
         return redirect(
             'doctor_appointment_detail',
             appointment_id=appointment.id
