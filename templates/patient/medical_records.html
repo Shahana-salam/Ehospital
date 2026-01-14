@@ -1,0 +1,81 @@
+{% extends "patient/base.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="mb-5">
+        <h2 class="fw-bold text-dark">Medical <span class="text-pink">Records</span></h2>
+        <p class="text-muted">Your complete clinical history and digital prescriptions.</p>
+        <div class="bg-pink" style="height: 3px; width: 60px;"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10">
+            {% for record in medical_records %}
+            <div class="card border-0 shadow-sm mb-4 record-card-hover">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-1">
+                                <i class="fas fa-user-md text-purple me-2"></i>
+                                Dr. {{ record.doctor.user.username|default:"N/A" }}
+                            </h5>
+                            <span class="badge bg-light text-muted border px-3">
+                                <i class="far fa-calendar-alt me-1"></i> {{ record.created_at|date:"M d, Y" }}
+                            </span>
+                        </div>
+                        <div class="text-end">
+                            <span class="small text-uppercase fw-bold text-muted">Record ID: #MR-{{ record.id }}</span>
+                        </div>
+                    </div>
+
+                    <hr class="opacity-10">
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <h6 class="text-pink fw-bold small text-uppercase mb-2">Diagnosis</h6>
+                            <p class="text-dark bg-light p-3 rounded border-start border-pink border-3">
+                                {{ record.diagnosis }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <h6 class="text-purple fw-bold small text-uppercase mb-2">Prescription / Medication</h6>
+                            <p class="text-dark bg-light p-3 rounded border-start border-purple border-3">
+                                {{ record.prescription }}
+                            </p>
+                        </div>
+
+                        {% if record.allergies %}
+                        <div class="col-12 mb-4">
+                            <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center">
+                                <i class="fas fa-exclamation-triangle me-3"></i>
+                                <div>
+                                    <strong class="small text-uppercase">Known Allergies:</strong><br>
+                                    {{ record.allergies }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if record.treatment_history %}
+                        <div class="col-12">
+                            <h6 class="text-secondary fw-bold small text-uppercase mb-2">Treatment History</h6>
+                            <p class="small text-muted fst-italic">
+                                {{ record.treatment_history }}
+                            </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center py-5 bg-white rounded shadow-sm">
+                <i class="fas fa-folder-open fa-3x text-light mb-3"></i>
+                <p class="text-muted">No medical records have been uploaded to your profile yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "admin/base.html" %}
+{% block content %}
+
+<div class="main-content container mt-4">
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header text-white" style="background:#390707;">
+            <h5 class="mb-0">
+                <i class="bi bi-hospital"></i> {{ title }}
+            </h5>
+        </div>
+
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="row g-3">
+
+                    {% for field in form %}
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="text-danger small">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="{% url 'facility_dashboard' %}" class="btn btn-outline-secondary">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn btn-success px-4">
+                        Save Resource
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

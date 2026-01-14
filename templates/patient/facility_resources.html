@@ -1,0 +1,79 @@
+{% extends "patient/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h6 class="text-pink fw-bold text-uppercase mb-2">Our Environment</h6>
+            <h2 class="display-5 fw-bold text-dark">World-Class <span class="text-purple">Facilities</span></h2>
+            <p class="text-muted lead">We provide a healing environment equipped with the latest medical technology and comfortable recovery spaces.</p>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4">
+            <div class="facility-card shadow-sm border-0 card h-100">
+                <div class="facility-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Diagnostic Center">
+                </div>
+                <div class="card-body p-4">
+                    <h5 class="fw-bold"><i class="fas fa-microscope text-pink me-2"></i> Diagnostic Center</h5>
+                    <p class="text-muted small">Full-scale laboratory and imaging services including MRI, CT Scans, and digital X-rays for precise results.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="facility-card shadow-sm border-0 card h-100">
+                <div class="facility-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Emergency Wing">
+                </div>
+                <div class="card-body p-4">
+                    <h5 class="fw-bold"><i class="fas fa-ambulance text-pink me-2"></i> 24/7 Emergency</h5>
+                    <p class="text-muted small">Immediate medical intervention with a dedicated trauma team ready to handle critical cases around the clock.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="facility-card shadow-sm border-0 card h-100">
+                <div class="facility-img-wrapper">
+                    <img src="{% static 'image/room.jpg' %}" class="card-img-top" alt="Patient Suites">
+                </div>
+                <div class="card-body p-4">
+                    <h5 class="fw-bold"><i class="fas fa-bed text-pink me-2"></i> Premium Suites</h5>
+                    <p class="text-muted small">Comfortable, private patient rooms designed to provide a calm and peaceful atmosphere for rapid recovery.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+    <div class="card border-0 shadow-sm text-center p-4 dashboard-card">
+        <div class="icon-circle bg-light-purple text-purple mx-auto mb-3">
+            <i class="fas fa-microscope fa-lg"></i>
+        </div>
+        <h5>Clinic Facilities</h5>
+        <p class="text-muted small">View our medical equipment and department resources.</p>
+        <a href="{% url 'resource_view' %}" class="btn btn-outline-purple btn-sm rounded-pill px-4">
+            View Details
+        </a>
+    </div>
+</div>
+    </div>
+
+    <div class="bg-light-purple p-5 rounded-4 shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="fw-bold text-purple mb-3">Looking for Medical Guides?</h3>
+                <p class="text-muted mb-0">Visit our dedicated Health Resource library brochures, nutrition plans, and medication guides curated by our specialists.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'patient_health_resources' %}" class="btn btn-pink text-white btn-lg px-5 rounded-pill shadow">
+                    View Library
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

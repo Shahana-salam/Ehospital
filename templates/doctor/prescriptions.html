@@ -1,0 +1,28 @@
+{% extends "doctor/base.html" %}
+{% block title %}Prescriptions{% endblock %}
+{% block header %}My Prescriptions{% endblock %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Medication</th>
+            <th>Dosage</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prescription in prescriptions %}
+        <tr>
+            <td>{{ prescription.patient.full_name }} </td>
+            <td>{{ prescription.medication }}</td>
+            <td>{{ prescription.dosage }}</td>
+            <td>{{ prescription.date }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No prescriptions found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

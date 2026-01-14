@@ -1,0 +1,77 @@
+{% extends "doctor/base.html" %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+{% load static %}
+{% block content %}
+
+<h4 class="mb-4">Dashboard</h4>
+
+<!-- Stats Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card">
+            <h6>Total Patients</h6>
+            <h2>{{ total_patients }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card">
+            <h6>Departments</h6>
+            <h2>{{ total_departments }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card">
+            <h6>Total Appointments</h6>
+            <h2>{{ total_appointments }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card pending">
+            <h6>Pending Appointments</h6>
+            <h2>{{ pending_appointments }}</h2>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Patient List -->
+
+
+        <h3><strong>New Patient List</strong></h3>
+<div class="table-wrapper">
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th><i>Patient Name</i></th>
+            <th><i>Date</i></th>
+            <th><i>Time</i></th>
+            <th><i>Status</i></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for appt in new_appointments %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ appt.patient }}</td>
+            <td>{{ appt.date }}</td>
+            <td>{{ appt.time }}</td>
+            <td>
+                <span class="badge bg-warning">
+                    {{ appt.status }}
+                </span>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No new appointments</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

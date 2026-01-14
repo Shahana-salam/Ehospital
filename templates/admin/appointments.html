@@ -1,0 +1,56 @@
+{% extends "admin/base.html" %}
+{% block content %}
+
+
+<div class="main-content">
+<h3 class="mb-4"><strong>Appointments</strong></h3>
+<div class="table-responsive">
+<table class="comparison-table">
+<tr style="background:#390707; color:white;" >
+
+    <th><i>Patient</i></th>
+    <th><i>Doctor</i></th>
+    <th><i>Department</i></th>
+    <th><i>Date</i></th>
+    <th><i>Time</i></th>
+    <th><i>Status</i></th>
+    <th><i>Created At</i></th>
+    <th><i>Actions</i></th>
+</tr>
+
+{% for appt in appointments %}
+<tr>
+    <td>{{ appt.patient.full_name }}</td>
+    <td>{{ appt.doctor.user.username }}</td>
+    <td>{{ appt.department.name }}</td>
+    <td>{{ appt.date }}</td>
+    <td>{{ appt.time }}</td>
+
+    <td>{{ appt.status }}</td>
+     <td>{{ appt.created_at|date:"d-m-Y H:i" }}</td>
+
+    <td>
+        <form method="POST" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="appointment_id" value="{{ appt.id }}">
+
+            {% if appt.status == "Pending" %}
+                <button name="action" value="confirm" class="btn btn-success">Confirm</button>
+                <button name="action" value="cancel" class="btn btn-danger">Cancel</button>
+            {% elif appt.status == "Confirmed" %}
+                <button name="action" value="complete" class="btn btn-warning">Complete</button>
+            {% else %}
+                —
+            {% endif %}
+        </form>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7">No appointments found.</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,445 @@
+:root {
+    --pink-color: #e91e63;
+    --purple-color: #673ab7;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+
+/* Navbar Customization */
+.btn-pink { background-color: var(--pink-color); border: none; }
+.btn-pink:hover { background-color: #c2185b; color: white; }
+.btn-purple { background-color: var(--purple-color); border: none; }
+.text-pink { color: var(--pink-color); }
+
+/* Hero Section */
+.hero-section {
+    height: 85vh;
+    /* This URL is a high-quality medical professional background */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+                      url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center right; /* Keeps the doctor visible on the right */
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
+    z-index: 1;
+}
+
+.hero-card {
+    position: relative;
+    z-index: 2;
+    border-radius: 4px;
+    border-left: 5px solid var(--pink-color); /* Added a small accent line */
+}
+
+/* Service Cards */
+.services-section {
+    margin-top: -100px; /* Pulls cards over the hero image */
+    position: relative;
+    z-index: 10;
+}
+
+.service-card {
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.icon-box {
+    font-size: 2.5rem;
+    color: var(--pink-color);
+}
+
+/* Slider Dots */
+.dot {
+    height: 8px;
+    width: 8px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.dot.active {
+    background-color: #333;
+    width: 20px;
+    border-radius: 10px;
+}
+
+
+
+/* appointment */
+
+
+/* Color Palette Matching Home Page */
+.text-pink { color: #e91e63 !important; }
+.btn-pink { background-color: #e91e63 !important; border-color: #e91e63; }
+.btn-pink:hover { background-color: #c2185b !important; }
+
+.text-purple { color: #673ab7; }
+.bg-purple-light { background-color: #f3e5f5; }
+.btn-outline-purple { color: #673ab7; border-color: #673ab7; }
+.btn-outline-purple:hover { background-color: #673ab7; color: white; }
+
+/* Custom Styling for the List */
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+}
+
+.table thead th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.table tbody td {
+    padding: 1rem 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Form controls adjustment */
+.input-group-sm > .form-control {
+    font-size: 0.8rem;
+}
+
+
+/* book appointment */
+
+/* Color Scheme */
+.text-pink { color: #e91e63 !important; }
+.bg-pink { background-color: #e91e63 !important; }
+
+.btn-pink {
+    background-color: #e91e63;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-pink:hover {
+    background-color: #c2185b;
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* Form Design */
+.form-control-lg, .form-select-lg {
+    font-size: 0.95rem;
+    border-radius: 8px;
+}
+
+/* Focus effect matches the branding */
+.form-control:focus, .form-select:focus {
+    border-color: #e91e63;
+    box-shadow: 0 0 0 0.25rem rgba(233, 30, 99, 0.1);
+}
+
+/* Card Styling */
+.card {
+    border-radius: 15px;
+}
+
+
+/* medical records */
+
+
+/* Medical Records Specific Styling */
+.text-pink { color: #e91e63 !important; }
+.border-pink { border-color: #e91e63 !important; }
+.text-purple { color: #673ab7 !important; }
+.border-purple { border-color: #673ab7 !important; }
+.bg-pink { background-color: #e91e63 !important; }
+
+.record-card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+}
+
+.record-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+}
+
+.alert-danger {
+    background-color: #fff5f5;
+    color: #dc3545;
+    border-left: 4px solid #dc3545 !important;
+}
+
+/* Typography polish */
+h6 {
+    letter-spacing: 0.5px;
+}
+
+
+/* health resource */
+
+
+/* Health Resources Theme Styles */
+.text-pink { color: #e91e63 !important; }
+.bg-pink { background-color: #e91e63 !important; }
+
+.text-purple { color: #673ab7 !important; }
+.bg-purple-light { background-color: #f3e5f5 !important; }
+
+.btn-outline-pink {
+    color: #e91e63;
+    border-color: #e91e63;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-pink:hover {
+    background-color: #e91e63;
+    color: white;
+    transform: translateX(5px);
+}
+
+.resource-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+}
+
+.resource-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Typography polish */
+.card-title {
+    line-height: 1.4;
+    color: #333;
+}
+
+
+/* billing */
+
+
+/* Billing Dashboard specific styles */
+.bg-purple { background-color: #673ab7 !important; }
+.text-purple { color: #673ab7 !important; }
+.text-pink { color: #e91e63 !important; }
+.btn-pink { background-color: #e91e63 !important; border: none; }
+.btn-pink:hover { background-color: #c2185b !important; transform: translateY(-1px); transition: 0.2s; }
+
+/* Status Badges */
+.bg-warning-light { background-color: #fff9e6 !important; }
+.bg-success-light { background-color: #e6f9ed !important; }
+
+/* Table Polish */
+.table thead th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table tbody td {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+.rounded-4 {
+    border-radius: 1rem !important;
+}
+
+
+/* profile */
+
+
+/* Profile Page Specific Styles */
+.bg-purple {
+    background: linear-gradient(135deg, #673ab7 0%, #512da8 100%) !important;
+}
+
+.text-pink { color: #e91e63 !important; }
+.text-purple { color: #673ab7 !important; }
+
+/* Large Avatar Circle */
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Typography and Border adjustments */
+.rounded-4 { border-radius: 1.25rem !important; }
+
+label {
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.cursor-pointer { cursor: pointer; }
+
+
+/* footer */
+
+
+/* Footer Styles */
+.bg-light-purple {
+    background-color: #f3e5f5; /* Light purple tint for the copyright bar */
+}
+
+.text-pink { color: #e91e63 !important; }
+.text-purple { color: #673ab7 !important; }
+
+.footer-links a:hover {
+    color: #e91e63 !important;
+    padding-left: 5px;
+    transition: all 0.3s ease;
+}
+
+.footer i {
+    font-size: 1.1rem;
+}
+
+/* Ensure the footer stays at the bottom of short pages */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* about us */
+
+
+/* About Us Styles */
+.bg-light-purple {
+    background-color: #f8f5fb;
+}
+
+.bg-purple {
+    background-color: #673ab7 !important;
+}
+
+.text-pink {
+    color: #e91e63 !important;
+}
+
+.text-purple {
+    color: #673ab7 !important;
+}
+
+.border-pink {
+    border-color: #e91e63 !important;
+}
+
+.rounded-4 {
+    border-radius: 1.5rem !important;
+}
+
+.about-hero h1 {
+    line-height: 1.2;
+}
+
+/* facility */
+
+
+/* Facility Card Styling */
+.facility-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facility-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(103, 58, 183, 0.1) !important;
+}
+
+.facility-img-wrapper {
+    height: 200px;
+    overflow: hidden;
+}
+
+.facility-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.facility-card:hover .facility-img-wrapper img {
+    transform: scale(1.1);
+}
+
+/* Colors and Layout */
+.bg-light-purple {
+    background-color: #f8f6fc;
+    border-left: 5px solid #673ab7;
+}
+
+.text-pink { color: #e91e63 !important; }
+.text-purple { color: #673ab7 !important; }
+.btn-pink { background-color: #e91e63 !important; }
+
+.rounded-4 {
+    border-radius: 1.5rem !important;
+}
+
+
+/* success */
+
+/* Payment Success Accents */
+.text-pink { color: #e91e63 !important; }
+.text-purple { color: #673ab7 !important; }
+.btn-purple { background-color: #673ab7 !important; color: white !important; }
+
+/* The Success Circle Animation */
+.success-icon-wrap {
+    width: 80px;
+    height: 80px;
+    background-color: #e8f5e9; /* Light green tint */
+    color: #2e7d32; /* Deep forest green */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    box-shadow: 0 0 0 10px #f1f8f1;
+    animation: scaleIn 0.5s cubic-bezier(0.12, 0, 0.39, 0) forwards;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.border-dashed {
+    border: 2px dashed #e0e0e0;
+}
+
+.rounded-4 { border-radius: 1.5rem !important; }

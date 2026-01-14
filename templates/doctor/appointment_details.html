@@ -1,0 +1,97 @@
+{% extends "doctor/base.html" %}
+{% block title %}Appointment Detail{% endblock %}
+{% load static %}
+{% block header %}Appointment Detail{% endblock %}
+
+{% block content %}
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="container mt-4">
+
+  <div class="row g-4">
+
+    <!-- Patient Information -->
+    <div class="col-md-5">
+      <div class="card shadow-sm border-0">
+        <div class="card-header text-white" style="background :#2f4050;">
+          <i class="fa-solid fa-user"></i> Patient Information
+        </div>
+        <div class="card-body">
+          <p><strong>Name:</strong> {{ appointment.patient }}</p>
+          <p><strong>Age:</strong> {{ appointment.patient.age }}</p>
+          <p><strong>Gender:</strong> {{ appointment.patient.gender }}</p>
+          <p><strong>Phone:</strong> {{ appointment.patient.phone }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointment Information -->
+    <div class="col-md-7">
+      <div class="card shadow-sm border-0">
+        <div class="card-header text-white" style="background :#2f4050;">
+          <i class="fa-solid fa-calendar-check"></i> Appointment Details
+        </div>
+
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Date</label>
+                <input type="date"
+                       name="date"
+                       class="form-control"
+                       value="{{ appointment.date }}">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Time</label>
+                <input type="time"
+                       name="time"
+                       class="form-control"
+                       value="{{ appointment.time }}">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select name="status" class="form-select">
+                {% for key, value in appointment.STATUS_CHOICES %}
+                  <option value="{{ key }}"
+                    {% if appointment.status == key %}selected{% endif %}>
+                    {{ value }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              <button type="submit" class="btn btn-success">
+                <i class="fa-solid fa-floppy-disk"></i> Update
+              </button>
+
+              <a href="{% url 'doctor_appointments' %}"
+                 class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </a>
+
+              <a href="{% url 'add_medical_record_from_appointment' appointment.id %}"
+                 class="btn btn-primary ms-auto">
+                <i class="fa-solid fa-notes-medical"></i> Add Medical Record
+              </a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

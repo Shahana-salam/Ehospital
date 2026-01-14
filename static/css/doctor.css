@@ -1,0 +1,93 @@
+body {
+    background: #f4f6f9;
+}
+
+.sidebar {
+    height: 100vh;
+    background: #2f4050;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar a {
+    color: #ddd;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.sidebar a:hover {
+    background: #1ab394;
+    color: white;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    margin-bottom: 10px;
+}
+
+.content {
+    padding: 30px;
+}
+
+.stat-card {
+    padding: 20px;
+    border-left: 5px solid #1ab394;
+}
+
+.stat-card.pending {
+    border-left: 5px solid red;
+}
+
+
+.table-wrapper {
+  width: 80%;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  text-align: center;
+}
+
+.comparison-table th {
+  background: #2f4050;
+  color: white;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.comparison-table th:first-child {
+  text-align: left;
+}
+
+.comparison-table td {
+  background: #eee;
+  padding: 12px;
+}
+
+.comparison-table td:first-child {
+  text-align: left;
+  font-weight: bold;
+  background: #f2f2f2;
+}
+
+.comparison-table i {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 5px;
+}

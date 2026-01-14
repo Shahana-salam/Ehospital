@@ -1,0 +1,45 @@
+{% extends "doctor/base.html" %}
+{% block title %}Appointments{% endblock %}
+{% load static %}
+{% block header %}My Appointments{% endblock %}
+
+{% block content %}
+<h3 class="mb-4"><strong>Appointments</strong></h3>
+<div class="row mb-4">
+<table class="comparison-table">
+    <thead class="table-dark" >
+        <tr>
+            <th><i>Patient</i></th>
+            <th><i>Date</i></th>
+            <th><i>Time</i></th>
+            <th><i>Created At</i></th>
+            <th><i>Status</i></th>
+            <th><i>Action</i></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appt in appointments %}
+        <tr>
+            <td>{{ appt.patient }}</td>
+            <td>{{ appt.date }}</td>
+            <td>{{ appt.time }}</td>
+            <td>{{ appt.created_at }}</td>
+            <td>
+                <span class="badge bg-info">{{ appt.status }}</span>
+            </td>
+            <td>
+                <a href="{% url 'doctor_appointment_detail' appt.id %}"
+                   class="btn btn-sm " style="background :#2f4050; color:white;">
+                    View
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">No appointments found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div class="main-content">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 12px;
+        }
+        select, input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background:#390707;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+    </style>
+
+
+<div class="container">
+    <h2>Add Billing</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label>Patient</label>
+        <select name="patient" required>
+            <option value="">-- Select Patient --</option>
+            {% for patient in patients %}
+                <option value="{{ patient.id }}">{{ patient.full_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Appointment</label>
+        <select name="appointment" required>
+            <option value="">-- Select Appointment --</option>
+            {% for appointment in appointments %}
+                <option value="{{ appointment.id }}">
+                    {{ appointment.date }} - {{ appointment.doctor }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label>Description</label>
+        <textarea name="description" rows="3" placeholder="Consultation / Lab Test / Surgery" required></textarea>
+
+        <label>Amount (₹)</label>
+        <input type="number" name="amount" step="0.01" required>
+
+        <button type="submit">Add Billing</button>
+    </form>
+</div>
+
+</div>
+    {% endblock %}

@@ -1,0 +1,57 @@
+{% extends "patient/base.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-dark">Health <span class="text-pink">Resources</span></h2>
+        <p class="text-muted mx-auto" style="max-width: 600px;">
+            Explore our curated library of health tips, medical articles, and wellness guides to help you live a healthier life.
+        </p>
+        <div class="bg-pink mx-auto mt-3" style="height: 3px; width: 60px;"></div>
+    </div>
+
+    <div class="row g-4">
+        {% if resources %}
+            {% for resource in resources %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm resource-card">
+                    <div class="card-body d-flex flex-column p-4">
+                        <div class="mb-3">
+                            <span class="badge bg-purple-light text-purple rounded-pill px-3 py-2">
+                                <i class="fas fa-book-medical me-1"></i> Medical Tip
+                            </span>
+                        </div>
+
+                        <h5 class="card-title fw-bold mb-3">{{ resource.title }}</h5>
+
+                        <div class="card-text text-secondary mb-4 flex-grow-1">
+                            {{ resource.content|truncatewords:25|linebreaks }}
+                        </div>
+
+                        <div class="mt-auto border-top pt-3 d-flex align-items-center justify-content-between">
+                            {% if resource.link %}
+                                <a href="{{ resource.link }}" target="_blank" class="btn btn-outline-pink btn-sm rounded-pill px-4">
+                                    Read More &rarr;
+                                </a>
+                            {% endif %}
+                            <small class="text-muted fst-italic" style="font-size: 0.75rem;">
+                                {{ resource.created_at|date:"M d, Y" }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <div class="bg-white p-5 rounded shadow-sm">
+                    <i class="fas fa-notes-medical fa-4x text-light mb-3"></i>
+                    <h5 class="text-muted">No health resources available at the moment.</h5>
+                    <p class="text-secondary small">Please check back later for new updates.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

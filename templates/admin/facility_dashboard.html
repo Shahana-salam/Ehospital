@@ -1,0 +1,207 @@
+{% extends "admin/base.html" %}
+{% block content %}
+
+<style>
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+    display: inline-block;
+}
+
+.btn-green { background: #28a745; }
+.btn-blue { background: #007bff; }
+.btn-yellow { background: #ffc107; color:#000; }
+.btn-dark { background: #343a40; }
+
+.card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+    text-align: left;
+}
+
+th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.actions a {
+    margin-right: 10px;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.actions .edit { color: #0d6efd; }
+.actions .delete { color: #dc3545; }
+.actions .view { color: #198754; }
+
+.empty {
+    text-align: center;
+    color: #777;
+    padding: 15px;
+}
+</style>
+<div class="main-content">
+    <h2 class="page-title">Facility Management</h2>
+
+<!-- ACTION BUTTONS -->
+<div class="action-bar">
+    <a href="{% url 'add_location' %}" class="btn btn-green">➕ Add Location</a>
+    <a href="{% url 'add_department' %}" class="btn btn-blue">➕ Add Department</a>
+    <a href="{% url 'add_health_resource' %}" class="btn btn-yellow">➕ Add Health Resource</a>
+    <a href="{% url 'resource_add' %}" class="btn btn-dark">➕ Add Resource</a>
+</div>
+
+<!-- LOCATIONS -->
+<div class="card">
+    <h3>📍 Locations</h3>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        {% for location in locations %}
+        <tr>
+            <td>{{ location.id }}</td>
+            <td>{{ location.name }}</td>
+            <td class="actions">
+                <a href="{% url 'edit_location' location.id %}" class="edit">Edit</a>
+                <a href="{% url 'delete_location' location.id %}" class="delete"
+                   onclick="return confirm('Delete this location?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3" class="empty">No locations found</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- DEPARTMENTS -->
+<div class="card">
+    <h3>🏥 Departments</h3>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+        {% for department in departments %}
+        <tr>
+            <td>{{ department.id }}</td>
+            <td>{{ department.name }}</td>
+            <td>{{ department.location.name }}</td>
+            <td class="actions">
+                <a href="{% url 'edit_department' department.id %}" class="edit">Edit</a>
+                <a href="{% url 'delete_department' department.id %}" class="delete"
+                   onclick="return confirm('Delete this department?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" class="empty">No departments found</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- HEALTH RESOURCES (LINKS) -->
+<div class="card">
+    <h3>📚 Health Resources</h3>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Link</th>
+            <th>Actions</th>
+        </tr>
+        {% for resource in resources %}
+        <tr>
+            <td>{{ resource.id }}</td>
+            <td>{{ resource.title }}</td>
+            <td>
+                {% if resource.link %}
+                    <a href="{{ resource.link }}" target="_blank" class="view">View</a>
+                {% else %}
+                    N/A
+                {% endif %}
+            </td>
+            <td class="actions">
+                <a href="{% url 'edit_resource' resource.id %}" class="edit">Edit</a>
+                <a href="{% url 'delete_resource' resource.id %}" class="delete"
+                   onclick="return confirm('Delete this resource?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" class="empty">No health resources found</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- PHYSICAL RESOURCES -->
+<div class="card">
+    <h3>🧰 Resources</h3>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+         {% for res in facility_resources %}
+        <tr>
+            <td>{{ res.id }}</td>
+            <td>{{ res.name }}</td>
+            <td>{{ res.department.name }}</td>
+            <td>{{ res.quantity }}</td>
+            <td>{{ res.description }}</td>
+            <td class="actions">
+                <a href="{% url 'resource_edit' res.pk %}" class="edit">Edit</a>
+                <a href="{% url 'resource_delete' res.pk %}" class="delete"
+                   onclick="return confirm('Delete this resource?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5" class="empty">No resources found</td></tr>
+        {% endfor %}
+    </table>
+</div>
+</div>
+{% endblock %}

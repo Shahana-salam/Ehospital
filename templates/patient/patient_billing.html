@@ -1,0 +1,84 @@
+{% extends "patient/base.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <h2 class="fw-bold text-dark">Billing <span class="text-pink">& Invoices</span></h2>
+            <p class="text-muted mb-0">View your payment history and settle outstanding balances.</p>
+        </div>
+        <div class="text-pink">
+            <i class="fas fa-file-invoice-dollar fa-3x opacity-25"></i>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-purple text-white">
+                        <tr>
+                            <th class="ps-4 py-3">Invoice ID</th>
+                             <th class="py-3">Description</th>
+                            <th class="py-3">Amount</th>
+                            <th class="py-3">Status</th>
+                            <th class="py-3 text-end pe-4">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bill in bills %}
+                        <tr>
+                            <td class="ps-4">
+                                <span class="fw-bold text-purple">#INV-{{ bill.id }}</span>
+                            </td>
+
+                            <td>
+                                <span>{{ bill.description }}</span>
+                            </td>
+                            <td>
+                                <span class="fw-bold fs-5 text-dark">₹{{ bill.amount }}</span>
+                            </td>
+                            <td>
+                                {% if bill.status == 'Unpaid' %}
+                                    <span class="badge rounded-pill bg-warning-light text-warning px-3 py-2 border border-warning">
+                                        <i class="fas fa-exclamation-circle me-1"></i> Unpaid
+                                    </span>
+                                {% else %}
+                                    <span class="badge rounded-pill bg-success-light text-success px-3 py-2 border border-success">
+                                        <i class="fas fa-check-circle me-1"></i> Paid
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="text-end pe-4">
+                                {% if bill.status == 'Unpaid' %}
+                                    <form method="post" action="{% url 'create_checkout_session' bill.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-pink text-white rounded-pill px-4 shadow-sm fw-bold">
+                                            Pay Now <i class="fas fa-chevron-right ms-1 small"></i>
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <button class="btn btn-outline-secondary btn-sm rounded-pill px-4" disabled>
+                                        <i class="fas fa-download me-1"></i> Invoice
+                                    </button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center py-5">
+                                <div class="text-muted">
+                                    <i class="fas fa-receipt fa-3x mb-3 opacity-25"></i>
+                                    <p>No billing records found.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

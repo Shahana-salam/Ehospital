@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div class="main-content">
+
+<h3 class="mb-4"><strong>Manage Doctors</strong></h3>
+
+    <div class="table-responsive">
+<table class="comparison-table">
+    <tr style="background:#390707; color:white;">
+        <th><i>ID</i></th>
+        <th><i>Patient</i></th>
+        <th><i>Appointment</i></th>
+        <th><i>Amount</i></th>
+        <th><i>Status</i></th>
+    </tr>
+
+    {% for bill in billings %}
+    <tr>
+        <td>{{ bill.id }}</td>
+        <td>{{ bill.patient.full_name }}</td>
+        <td>{{ bill.appointment }}</td>
+        <td>₹{{ bill.amount }}</td>
+        <td><button class="btn btn-warning">{{ bill.status }}</button></td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+</div>
+</div>
+{% endblock %}

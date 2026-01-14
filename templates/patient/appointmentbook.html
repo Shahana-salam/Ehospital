@@ -1,0 +1,64 @@
+{% extends "patient/base.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card border-0 shadow-lg p-4 p-md-5 bg-white">
+                
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold"><span class="text-pink">Book</span> Appointment</h2>
+                    <p class="text-muted small">Fill in the details below to schedule your visit.</p>
+                    <div class="mx-auto bg-pink mb-4" style="height: 3px; width: 50px;"></div>
+                </div>
+
+                <form method="post" action="">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="doctor" class="form-label fw-semibold text-secondary small">Doctor</label>
+                        <select name="doctor" id="doctor" class="form-select form-control-lg border-2" required>
+                            <option value="" selected disabled>
+                                -- Choose Doctor (Specialist & Location) --
+                            </option>
+                            {% for doc in doctors %}
+            <option value="{{ doc.id }}">
+                {{ doc.specialization.name }} | {{ doc.location.name }} | Dr. {{ doc.user.get_full_name }}
+            </option>
+        {% empty %}
+            <option disabled>No doctors available</option>
+        {% endfor %}
+                        </select>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="date" class="form-label fw-semibold text-secondary small">Date</label>
+                            <input type="date" name="date" id="date" class="form-control form-control-lg border-2" required>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="time" class="form-label fw-semibold text-secondary small">Time</label>
+                            <input type="time" name="time" id="time" class="form-control form-control-lg border-2" required>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-pink btn-lg text-white py-3 shadow-sm fw-bold">
+                            Confirm Appointment
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <a href="{% url 'patient_appointments' %}" class="text-muted small text-decoration-none">
+                            &larr; Back to my list
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

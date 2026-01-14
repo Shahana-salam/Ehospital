@@ -1,0 +1,151 @@
+body {
+    background: #f4f6f9;
+}
+
+.sidebar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 240px;        /* FIXED WIDTH */
+    height: 100vh;
+    background-color: #4b0000;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.sidebar a {
+    color: #ddd;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.sidebar a:hover {
+    background: #adb796;
+    color: white;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    margin-bottom: 10px;
+}
+
+.main-content {
+    margin-left: 240px;  /* MUST MATCH sidebar width */
+    padding: 20px;
+}
+
+.content {
+    padding: 30px;
+}
+
+.stat-card {
+    padding: 20px;
+    border-left: 5px solid #1ab394;
+}
+
+.stat-card.pending {
+    border-left: 5px solid red;
+}
+
+
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.table-row:hover {
+    background: #f8f9fa;
+    transition: 0.2s;
+}
+
+.action-btn {
+    padding: 6px 10px;
+    margin: 0 4px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+}
+
+.action-btn.edit {
+    background: #0d6efd;
+}
+
+.action-btn.delete {
+    background: #dc3545;
+}
+
+.action-btn:hover {
+    opacity: 0.85;
+}
+
+.badge {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .comparison-table thead {
+        display: none;
+    }
+
+    .comparison-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+    }
+
+    .comparison-table td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .comparison-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+
+.dashboard-card {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.icon-box {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+

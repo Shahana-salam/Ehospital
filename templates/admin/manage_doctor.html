@@ -1,0 +1,76 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="main-content">
+<h3 class="mb-4"><strong>Manage Doctors</strong></h3>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <a href="{% url 'add_doctor' %}" class="btn " style="background:#c1b816;">
+        <i class="fa fa-user-md"></i> Add Doctor
+    </a>
+
+    <input type="text" id="searchInput" placeholder="Search doctor..."
+           style="padding:8px; width:250px; border:1px solid #ccc;">
+</div>
+
+<div class="table-responsive">
+
+<table class="comparison-table" id="doctorTable">
+    <thead>
+        <tr style="background:#390707; color:white;">
+            <th><i>Name</i></th>
+            <th><i>Specialization</i></th>
+            <th><i>Phone</i></th>
+            <th><i>Location</i></th>
+            <th style="text-align:center;"><i>Actions</i></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doctor in doctors %}
+        <tr class="table-row">
+            <td>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</td>
+            <td>
+                <span class="badge bg-primary">{{ doctor.specialization }}</span>
+            </td>
+            <td>{{ doctor.phone }}</td>
+            <td>{{ doctor.location }}</td>
+            <td style="text-align:center;">
+                <a href="{% url 'edit_doctor' doctor.id %}" class="action-btn edit">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a href="{% url 'delete_doctor' doctor.id %}"
+                   class="action-btn delete"
+                   onclick="return confirm('Are you sure you want to delete this doctor?')">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" style="text-align:center; padding:15px;">
+                No doctors found
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+</div>
+
+<!-- Search Script -->
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#doctorTable tbody tr");
+
+    rows.forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(filter)
+            ? ""
+            : "none";
+    });
+});
+</script>
+
+{% endblock %}

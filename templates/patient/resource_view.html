@@ -1,0 +1,54 @@
+{% extends "patient/base.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="mb-5">
+        <h2 class="fw-bold text-dark">Our Clinic <span class="text-pink">Facilities</span></h2>
+        <p class="text-muted">We are equipped with state-of-the-art resources to ensure your best care.</p>
+        <div class="bg-pink" style="height: 3px; width: 60px;"></div>
+    </div>
+
+    <div class="row g-4">
+        {% for resource in resources %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 facility-card">
+                <div class="card-body p-4">
+                    <span class="badge bg-purple-light text-purple mb-3 px-3 py-2 rounded-pill">
+                        <i class="fas fa-building me-1"></i> {{ resource.department.name }}
+                    </span>
+                    
+                    <h5 class="fw-bold text-dark mb-2">{{ resource.name }}</h5>
+                    
+                    <p class="text-muted small mb-4">
+                        {{ resource.description|default:"Top-tier medical resource available for patient care." }}
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                        <span class="text-secondary small">
+                            <i class="fas fa-check-circle text-success me-1"></i> Available
+                        </span>
+                        <span class="fw-bold text-pink">
+                            Qty: {{ resource.quantity }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <i class="fas fa-box-open fa-3x text-light mb-3"></i>
+            <p class="text-muted">No facility information available at the moment.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .bg-purple-light { background-color: #f3e5f5; }
+    .text-purple { color: #673ab7; }
+    .text-pink { color: #e91e63; }
+    .facility-card { transition: transform 0.3s ease; }
+    .facility-card:hover { transform: translateY(-5px); }
+</style>
+
+{% endblock %}

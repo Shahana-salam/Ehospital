@@ -1,0 +1,25 @@
+{% extends "doctor/base.html" %}
+{% block header %}Add Medical Record{% endblock %}
+
+{% block content %}
+<h6>Patient: {{ appointment.patient }}</h6>
+<p>Appointment: {{ appointment.appointment_date }} {{ appointment.appointment_time }}</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Diagnosis</label>
+    <textarea name="diagnosis" class="form-control" required></textarea>
+
+    <label class="mt-2">Prescription</label>
+    <textarea name="prescription" class="form-control" required></textarea>
+
+    <label class="mt-2">Allergies</label>
+    <textarea name="allergies" class="form-control"></textarea>
+
+    <label class="mt-2">Treatment History</label>
+    <textarea name="treatment_history" class="form-control"></textarea>
+
+    <button class="btn btn-success mt-3">Save Medical Record</button>
+</form>
+{% endblock %}

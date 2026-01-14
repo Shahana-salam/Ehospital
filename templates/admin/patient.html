@@ -1,0 +1,48 @@
+{% extends "admin/base.html" %}
+{% block content %}
+
+<div class="main-content">
+<h3 class="mb-4"><strong>Manage Doctors</strong></h3>
+
+<div class="table-responsive">
+<table class="comparison-table">
+    <tr style="background:#390707; color:white;">
+        <th style="padding:10px;"><i>Full Name</i></th>
+        <th><i>Username</i></th>
+        <th><i>Age</i></th>
+        <th><i>Gender</i></th>
+        <th><i>Phone</i></th>
+        <th><i>Address</i></th>
+        <th><i>Status</i></th>
+        <th><i>Action</i></th>
+    </tr>
+    {% for patient in patients %}
+    <tr style="border-bottom:1px solid #ddd;">
+        <td style="padding:10px;">{{ patient.full_name }}</td>
+        <td>{{ patient.user.username }}</td>
+        <td>{{ patient.age }}</td>
+        <td>{{ patient.gender }}</td>
+        <td>{{ patient.phone }}</td>
+        <td>{{ patient.address }}</td>
+        <td>
+            {% if patient.user.is_active %}
+                Active
+            {% else %}
+                Disabled
+            {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'toggle_patient_status' patient.id %}" style="padding:5px 10px; background:#007bff; color:white; text-decoration:none; border-radius:3px;">
+                {% if patient.user.is_active %}Disable{% else %}Enable{% endif %}
+            </a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="8">No patients registered yet.</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+</div>
+{% endblock %}

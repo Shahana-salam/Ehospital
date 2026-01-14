@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div class="main-content">
+<h2>Delete Doctor</h2>
+<p>Are you sure you want to delete <strong>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</strong>?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" style="background:#dc3545; color:white; padding:10px 20px; border:none; border-radius:4px;">Yes, Delete</button>
+    <a href="{% url 'manage_doctors' %}" style="padding:10px 20px; background:#6c757d; color:white; border-radius:4px; text-decoration:none;">Cancel</a>
+</form>
+</div>
+{% endblock %}

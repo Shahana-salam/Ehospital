@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div class="main-content">
+
+<h2>{{ title }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'facility_dashboard' %}" class="btn btn-secondary">Cancel</a>
+</form>
+</div>
+{% endblock %}

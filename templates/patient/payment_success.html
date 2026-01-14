@@ -1,0 +1,47 @@
+{% extends "patient/base.html" %}
+{% block content %}
+
+<section class="d-flex align-items-center" style="min-height: 80vh; background: #f8f9fa;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5 text-center">
+                <div class="card border-0 shadow-lg rounded-4 p-5">
+                    <div class="card-body">
+                        <div class="success-icon-wrap mb-4 mx-auto">
+                            <i class="fas fa-check"></i>
+                        </div>
+
+                        <h2 class="fw-bold text-dark mb-2">Payment <span class="text-pink">Successful</span></h2>
+                        <p class="text-muted mb-4">Your transaction has been processed securely. A digital receipt has been sent to your registered email.</p>
+
+                        <div class="bg-light rounded-3 p-4 mb-4 border-dashed">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary small">Transaction ID</span>
+                                <span class="fw-bold small">#PAY-{{ bill.id|default:"8829" }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-secondary fw-bold">Amount Paid</span>
+                                <span class="h4 fw-bold text-purple mb-0">₹{{ bill.amount }}</span>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'patient_billing' %}" class="btn btn-purple rounded-pill py-2 fw-bold shadow-sm">
+                                <i class="fas fa-file-invoice-dollar me-2"></i> View All Bills
+                            </a>
+                            <a href="javascript:window.print()" class="btn btn-outline-secondary border-0 small">
+                                <i class="fas fa-print me-1"></i> Print Receipt
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mt-4 text-muted small">
+                    Having trouble? <a href="#" class="text-pink text-decoration-none">Contact Billing Support</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

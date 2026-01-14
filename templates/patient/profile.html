@@ -1,0 +1,63 @@
+{% extends "patient/base.html" %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h2 class="fw-bold text-dark">My <span class="text-pink">Profile</span></h2>
+                <p class="text-muted">Manage your personal information and contact details.</p>
+            </div>
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-4 bg-purple text-white text-center p-5 d-flex flex-column align-items-center justify-content-center">
+                        <div class="profile-avatar mb-3 shadow">
+                            {{ patient.user.username|first|upper }}
+                        </div>
+                        <h4 class="fw-bold mb-1">{{ patient.user.username }}</h4>
+                        <p class="small opacity-75">Patient Account</p>
+                    </div>
+
+                    <div class="col-md-8 bg-white p-4 p-md-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold text-purple mb-0">Personal Information</h5>
+                            <i class="fas fa-user-edit text-pink cursor-pointer"></i>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-sm-6">
+                                <label class="text-muted small fw-bold text-uppercase">Full Name</label>
+                                <p class="text-dark fw-semibold mb-0 border-bottom pb-2">{{ patient.full_name|default:"Not provided" }}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small fw-bold text-uppercase">Age</label>
+                                <p class="text-dark fw-semibold mb-0 border-bottom pb-2">{{ patient.age|default:"Not provided" }}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small fw-bold text-uppercase">Gender</label>
+                                <p class="text-dark fw-semibold mb-0 border-bottom pb-2">{{ patient.gender|default:"Not provided" }}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small fw-bold text-uppercase">Phone</label>
+                                <p class="text-dark fw-semibold mb-0 border-bottom pb-2">{{ patient.phone|default:"Not provided" }}</p>
+                            </div>
+                            <div class="col-12">
+                                <label class="text-muted small fw-bold text-uppercase">Residential Address</label>
+                                <p class="text-dark fw-semibold mb-0 border-bottom pb-2">{{ patient.address|default:"Not provided" }}</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 pt-3">
+                            <a href="{% url 'patient_dashboard' %}" class="btn btn-outline-secondary rounded-pill px-4 btn-sm">
+                                <i class="fas fa-arrow-left me-2"></i> Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

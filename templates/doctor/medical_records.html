@@ -1,0 +1,32 @@
+{% extends "doctor/base.html" %}
+{% block title %}Medical Records{% endblock %}
+{% block header %}My Medical Records{% endblock %}
+
+{% block content %}
+
+<h3 class="mb-4"><strong>Appointments</strong></h3>
+<table class="comparison-table">
+    <thead>
+        <tr>
+            <th><i>Patient</i></th>
+            <th><i>Diagnosis</i></th>
+            <th><i>Prescription</i></th>
+            <th><i>Date</i></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.patient }}</td>
+            <td>{{ record.diagnosis|truncatechars:40 }}</td>
+            <td>{{ record.prescription|truncatechars:40 }}</td>
+            <td>{{ record.created_at|date:"d M Y" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">No medical records found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
