@@ -96,6 +96,7 @@ def appointment_list(request):
 
 
 
+
 def appointment_detail(request, appointment_id):
     doctor = get_object_or_404(Doctor, user=request.user)
     appointment = get_object_or_404(
@@ -103,6 +104,18 @@ def appointment_detail(request, appointment_id):
         id=appointment_id,
         doctor=doctor
     )
+
+    if request.method == 'POST':
+        appointment.date = request.POST.get('date')   
+        appointment.time = request.POST.get('time')
+        appointment.status = request.POST.get('status')
+        appointment.save()
+
+        messages.success(request, "Appointment updated successfully")
+        return redirect(
+            'doctor_appointment_detail',
+            appointment_id=appointment.id
+        )
 
     medical_record = MedicalRecord.objects.filter(
         patient=appointment.patient,
@@ -117,6 +130,7 @@ def appointment_detail(request, appointment_id):
             'medical_record': medical_record
         }
     )
+
 
 
 
